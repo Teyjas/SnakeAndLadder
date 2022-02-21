@@ -9,7 +9,10 @@ namespace SnakeAndLadderApp;
 internal class SnakeAndLadder
 {
     // Game related attributes declared here
-    int position;
+    private int position;
+
+    // Common Random object for the class
+    static Random random = new Random();
 
     // Default Constructor
     public SnakeAndLadder()
@@ -20,5 +23,13 @@ internal class SnakeAndLadder
     public void Describe()
     {
         Console.WriteLine("Position: " + position);
+    }
+
+    public void RollDie()
+    {
+        int roll = random.Next(1, 7);
+        Console.WriteLine("Rolled: " + roll);
+        position += roll;
+        Describe();
     }
 }
