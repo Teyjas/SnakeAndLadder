@@ -26,12 +26,16 @@ internal class SnakeAndLadder
         Console.WriteLine("Position: " + position);
     }
 
+<<<<<<< HEAD
     // Rolls die using Random
+=======
+>>>>>>> master
     public void RollDie()
     {
         int roll = random.Next(1, 7);
         Console.WriteLine("Rolled: " + roll);
         position += roll;
+<<<<<<< HEAD
         Option(roll);
         Describe();
     }
@@ -72,4 +76,8 @@ internal class SnakeAndLadder
         Console.WriteLine("Going up by " + roll);
         position += roll;
     }
+=======
+        Describe();
+    }
+>>>>>>> master
 }
