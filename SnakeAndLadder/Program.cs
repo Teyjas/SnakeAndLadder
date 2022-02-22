@@ -24,6 +24,7 @@ internal class SnakeAndLadder
         totalDieRoll = 0;
     }
 
+    // Resets the values of the class attributes
     public void Reset()
     {
         position = 0;
@@ -40,7 +41,7 @@ internal class SnakeAndLadder
     // Rolls die using Random
     public void RollDie()
     {
-        totalDieRoll++;         // Increment totalDieRoll every RollDie is called
+        totalDieRoll++;
         int chkContinue = 0;
         int roll = random.Next(1, 7);
         Console.WriteLine("\nRolled: " + roll);
@@ -48,7 +49,6 @@ internal class SnakeAndLadder
             chkContinue = MovePlayer(roll);
         if (winCheck is false && chkContinue == 1)
             Option(roll);
-        Describe();
     }
 
     // Checks option for player using Random
@@ -86,6 +86,8 @@ internal class SnakeAndLadder
         Console.WriteLine("Yay! A Ladder!!!");
         Console.WriteLine("Going up by " + roll);
         MovePlayer(roll);
+        Console.WriteLine("You get another turn to roll Since you got ladder");
+        RollDie();
     }
 
     // Checks if position is out of bounds in the game
@@ -123,12 +125,25 @@ internal class SnakeAndLadder
         return CheckBoundary(displacement);
     }
 
-    // This will roll die untill player wins
-    public void PlayTillEnd()
+    // This will roll die untill either of the player wins
+    public void PlayTillEnd(SnakeAndLadder player2)
     {
-        while (winCheck is false)
-            RollDie();
-        Console.WriteLine("\nCongratulations!! You Won!!");
-        Console.WriteLine("Die was rolled " + totalDieRoll + " times");
+        while (this.winCheck is false && player2.winCheck is false)
+        {
+            Console.WriteLine("\nPlayer 1 turn: ");
+            this.RollDie();
+            this.Describe();
+            if (this.winCheck is true)
+                break;
+            Console.WriteLine("\nPlayer 2 turn: ");
+            player2.RollDie();
+            player2.Describe();
+        }
+        if (player2.winCheck is true)
+            Console.WriteLine("\nCongratulations Player 2!! You Won!!");
+        else
+            Console.WriteLine("\nCongratulations Player 1!! You Won!!");
+        Console.WriteLine("Player 1 Total die rolls: " + this.totalDieRoll);
+        Console.WriteLine("Player 2 Total die rolls: " + player2.totalDieRoll);
     }
 }
