@@ -26,22 +26,19 @@ internal class SnakeAndLadder
         Console.WriteLine("Position: " + position);
     }
 
-<<<<<<< HEAD
     // Rolls die using Random
-=======
->>>>>>> master
     public void RollDie()
     {
         int roll = random.Next(1, 7);
-        Console.WriteLine("Rolled: " + roll);
+        Console.WriteLine("\nRolled: " + roll);
         position += roll;
-<<<<<<< HEAD
         Option(roll);
+        CheckBoundary();
         Describe();
     }
 
     // Checks option for player using Random
-    public void Option(int roll)
+    private void Option(int roll)
     {
         int option = random.Next(0, 3);
         switch (option)
@@ -76,8 +73,21 @@ internal class SnakeAndLadder
         Console.WriteLine("Going up by " + roll);
         position += roll;
     }
-=======
-        Describe();
+
+    // Checks if position is out of bounds in the game
+    private void CheckBoundary()
+    {
+        if (position < 0)
+            position = 0;
+        else if (position >= 100)
+            position = 100;
     }
->>>>>>> master
+
+    // This will roll die untill player wins
+    public void PlayTillEnd()
+    {
+        while (position < 100)
+            RollDie();
+        Console.WriteLine("\nCongratulations!! You Won!!");
+    }
 }
